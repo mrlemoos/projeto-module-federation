@@ -1,0 +1,26 @@
+{
+  "name": "mf-project",
+  "version": "0.0.1",
+  "description": "O uso do Module Federation em NextJS",
+  "main": "index.js",
+  "author": "Leonardo Lemos <leo.lemos.ds@icloud.com>",
+  "license": "PROPERTY",
+  "private": true,
+  "devDependencies": {
+    "concurrently": "^6.3.0"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "next": "^11.1.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "scripts": {
+    "dev:host": "( cd ./origin ; yarn run dev )",
+    "build:remote-lib": "( cd ./lib ; yarn run build ; )",
+    "start:remote-lib": "( cd ./lib ; yarn run start ; )",
+    "start:": " ( cd ./origin ; yarn run start ; )",
+    "start": " concurrently 'yarn run build:remote-lib' 'yarn run start:remote-lib' 'yarn run start:host'",
+    "dev": " concurrently 'yarn run build:remote-lib' 'yarn run start:remote-lib' 'yarn run dev:host'"
+  }
+}
